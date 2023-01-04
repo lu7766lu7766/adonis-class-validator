@@ -1,7 +1,6 @@
 export { validate } from "./decorators";
-export { getValidatorBag } from "./utils";
 import { getValidatorBag } from "./utils";
-import { plainToInstance } from "class-transformer";
+import { plainToClass } from "class-transformer";
 import { schema } from "@adonisjs/validator/build/src/Schema";
 import { validator } from "@adonisjs/validator/build/src/Validator";
 import { Class, ClassValidatorArg } from "@ioc:Adonis/ClassValidator/Shared";
@@ -28,6 +27,6 @@ export class ClassValidator {
       ...args,
     });
 
-    return plainToInstance(validatorClass, validatedData);
+    return plainToClass(validatorClass, validatedData);
   }
 }

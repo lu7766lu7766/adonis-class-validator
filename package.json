@@ -1,6 +1,6 @@
 {
   "name": "@lu7766lu7766/adonis-class-validator",
-  "version": "0.4.0",
+  "version": "0.7.0",
   "author": "Jac",
   "license": "MIT",
   "description": "Class validator for adonis framework",
@@ -47,7 +47,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "class-transformer": "^0.4.0",
+    "class-transformer": "0.4.0",
     "reflect-metadata": "^0.1.13"
   },
   "peerDependencies": {

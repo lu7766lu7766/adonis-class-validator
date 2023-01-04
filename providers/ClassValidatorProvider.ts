@@ -1,9 +1,9 @@
 import "reflect-metadata";
-import { plainToInstance } from "class-transformer";
+import { plainToClass } from "class-transformer";
 import { ApplicationContract } from "@ioc:Adonis/Core/Application";
 import { RequestConstructorContract } from "@ioc:Adonis/Core/Request";
 import { Class, ClassValidatorArg } from "@ioc:Adonis/ClassValidator/Shared";
-
+import { getValidatorBag } from "../src/utils";
 /*
 |--------------------------------------------------------------------------
 | Provider
@@ -55,8 +55,6 @@ export default class ClassValidatorProvider {
     this.app.container.withBindings(
       ["Adonis/Core/Request"],
       (request: RequestConstructorContract) => {
-        const { getValidatorBag } = require("../src");
-
         request.macro("classValidate", async function classValidate<
           T
         >(this: any, validatorClass: Class<T>, args?: ClassValidatorArg): Promise<T> {
@@ -77,7 +75,7 @@ export default class ClassValidatorProvider {
               delete data[key];
             }
           });
-          const res = plainToInstance(validatorClass, data);
+          const res = plainToClass(validatorClass, data);
           Object.keys(tmp).forEach((key) => {
             res[key] = tmp[key];
           });
