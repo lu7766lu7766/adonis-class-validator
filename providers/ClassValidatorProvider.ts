@@ -67,7 +67,21 @@ export default class ClassValidatorProvider {
             ...args,
           });
 
-          return plainToClass(validatorClass, data);
+          const tmp = {};
+          Object.keys(data).forEach((key) => {
+            if (
+              typeof data[key] == "object" &&
+              ![Object, Array].includes(data[key].constructor)
+            ) {
+              tmp[key] = data[key];
+              delete data[key];
+            }
+          });
+          const res = plainToClass(validatorClass, data);
+          Object.keys(tmp).forEach((key) => {
+            res[key] = tmp[key];
+          });
+          return res;
         });
       }
     );
