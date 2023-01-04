@@ -17,8 +17,8 @@ On successful validation, the data returned from validation is an instance of th
 Simply run the following commands on your shell
 
 ```bash
-npm install adonis-class-validator
-node ace invoke adonis-class-validator
+npm install @lu7766lu7766/adonis-class-validator
+node ace invoke @lu7766lu7766/adonis-class-validator
 ```
 
 ## 📌 Example
