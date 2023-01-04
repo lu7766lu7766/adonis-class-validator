@@ -1,7 +1,7 @@
 {
-  "name": "adonis-class-validator",
-  "version": "0.2.0",
-  "author": "Tochukwu Nkemdilim",
+  "name": "@lu7766lu7766/adonis-class-validator",
+  "version": "0.3.0",
+  "author": "Jac",
   "license": "MIT",
   "description": "Class validator for adonis framework",
   "main": "build/providers/ClassValidatorProvider.js",
@@ -13,12 +13,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tnkemdilim/adonis-class-validator.git"
+    "url": "git+https://github.com/lu7766lu7766/adonis-class-validator.git"
   },
   "bugs": {
     "url": "https://github.com/tnkemdilim/adonis-prometheus/issues"
   },
-  "homepage": "https://github.com/tnkemdilim/adonis-class-validator",
+  "homepage": "https://github.com/lu7766lu7766/adonis-class-validator.git",
   "types": "./build/adonis-typings/index.d.ts",
   "files": [
     "build/adonis-typings",
@@ -41,6 +41,10 @@
       "@adonisjs/validator",
       "adonis-class-validator"
     ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
     "class-transformer": "^0.4.0",

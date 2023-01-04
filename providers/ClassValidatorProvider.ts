@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { plainToClass } from "class-transformer";
+import { plainToInstance } from "class-transformer";
 import { ApplicationContract } from "@ioc:Adonis/Core/Application";
 import { RequestConstructorContract } from "@ioc:Adonis/Core/Request";
 import { Class, ClassValidatorArg } from "@ioc:Adonis/ClassValidator/Shared";
@@ -70,14 +70,14 @@ export default class ClassValidatorProvider {
           const tmp = {};
           Object.keys(data).forEach((key) => {
             if (
-              typeof data[key] == "object" &&
+              typeof data[key] === "object" &&
               ![Object, Array].includes(data[key].constructor)
             ) {
               tmp[key] = data[key];
               delete data[key];
             }
           });
-          const res = plainToClass(validatorClass, data);
+          const res = plainToInstance(validatorClass, data);
           Object.keys(tmp).forEach((key) => {
             res[key] = tmp[key];
           });
