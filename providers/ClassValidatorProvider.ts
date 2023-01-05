@@ -3,7 +3,8 @@ import { plainToClass } from "class-transformer";
 import { ApplicationContract } from "@ioc:Adonis/Core/Application";
 import { RequestConstructorContract } from "@ioc:Adonis/Core/Request";
 import { Class, ClassValidatorArg } from "@ioc:Adonis/ClassValidator/Shared";
-import { getValidatorBag } from "../src/utils";
+import { validate, getValidatorBag } from "../src";
+export { validate, ClassValidator } from "../src";
 /*
 |--------------------------------------------------------------------------
 | Provider
@@ -40,7 +41,7 @@ export default class ClassValidatorProvider {
 
     this.app.container.singleton("Adonis/ClassValidator", () => {
       return {
-        validate: require("../src").validate,
+        validate,
         ...adonisValidator,
       };
     });
@@ -51,7 +52,6 @@ export default class ClassValidatorProvider {
    */
   private registerRequestMacro() {
     const { schema } = this.app.container.use("Adonis/Core/Validator");
-
     this.app.container.withBindings(
       ["Adonis/Core/Request"],
       (request: RequestConstructorContract) => {

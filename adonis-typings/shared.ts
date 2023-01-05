@@ -95,4 +95,12 @@ declare module "@ioc:Adonis/ClassValidator/Shared" {
     schema: NestedSchemaTypeFn,
     messages?: CustomMessages
   ) => DecoratorFn;
+
+  export interface ClassValidator {
+    validate<T>(
+      validatorClass: Class<T>,
+      data: any,
+      args?: Omit<ClassValidatorArg, "data">
+    ): Promise<T>;
+  }
 }

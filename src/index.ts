@@ -1,4 +1,5 @@
 export { validate } from "./decorators";
+export { getValidatorBag } from "./utils";
 import { getValidatorBag } from "./utils";
 import { plainToClass } from "class-transformer";
 import { schema } from "@adonisjs/validator/build/src/Schema";
@@ -27,6 +28,20 @@ export class ClassValidator {
       ...args,
     });
 
-    return plainToClass(validatorClass, validatedData);
+    const tmp = {};
+    Object.keys(validatedData).forEach((key) => {
+      if (
+        typeof validatedData[key] === "object" &&
+        ![Object, Array].includes(validatedData[key].constructor)
+      ) {
+        tmp[key] = validatedData[key];
+        delete validatedData[key];
+      }
+    });
+    const res = plainToClass(validatorClass, validatedData);
+    Object.keys(tmp).forEach((key) => {
+      res[key] = tmp[key];
+    });
+    return res;
   }
 }
