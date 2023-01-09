@@ -4,7 +4,6 @@ import { ApplicationContract } from "@ioc:Adonis/Core/Application";
 import { RequestConstructorContract } from "@ioc:Adonis/Core/Request";
 import { Class, ClassValidatorArg } from "@ioc:Adonis/ClassValidator/Shared";
 import { validate, getValidatorBag } from "../src";
-export { validate, ClassValidator } from "../src";
 /*
 |--------------------------------------------------------------------------
 | Provider
@@ -41,8 +40,9 @@ export default class ClassValidatorProvider {
 
     this.app.container.singleton("Adonis/ClassValidator", () => {
       return {
-        validate,
         ...adonisValidator,
+        validate,
+        getValidatorBag,
       };
     });
   }
@@ -62,6 +62,7 @@ export default class ClassValidatorProvider {
           const data = await this.validate({
             schema: schema.create(validatorBag.schema),
             cacheKey: validatorBag.key,
+            messages: validatorBag.messages,
             ...args,
           });
 

@@ -24,6 +24,7 @@ export class ClassValidator {
     const validatedData = await validator.validate({
       schema: schema.create(validatorBag.schema),
       cacheKey: validatorBag.key,
+      messages: validatorBag.messages,
       data,
       ...args,
     });
