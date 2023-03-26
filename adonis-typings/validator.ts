@@ -23,9 +23,3 @@ declare module "@ioc:Adonis/ClassValidator" {
     ClassValidator,
   };
 }
-
-declare module "@ioc:Adonis/Core/Validator" {
-  interface Rules {
-    defined(): Rule;
-  }
-}
