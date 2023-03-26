@@ -4,7 +4,6 @@ import { ApplicationContract } from "@ioc:Adonis/Core/Application";
 import { RequestConstructorContract } from "@ioc:Adonis/Core/Request";
 import { Class, ClassValidatorArg } from "@ioc:Adonis/ClassValidator/Shared";
 import { validate, getValidatorBag } from "../src";
-import { Rule, SchemaLiteral } from "@ioc:Adonis/Core/Validator";
 /*
 |--------------------------------------------------------------------------
 | Provider
