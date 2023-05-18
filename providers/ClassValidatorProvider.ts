@@ -4,6 +4,7 @@ import { ApplicationContract } from "@ioc:Adonis/Core/Application";
 import { RequestConstructorContract } from "@ioc:Adonis/Core/Request";
 import { Class, ClassValidatorArg } from "@ioc:Adonis/ClassValidator/Shared";
 import { validate, getValidatorBag } from "../src";
+import { DateTime, DurationUnit } from "luxon";
 /*
 |--------------------------------------------------------------------------
 | Provider
@@ -31,6 +32,7 @@ export default class ClassValidatorProvider {
   public async boot() {
     this.bindClassValidator();
     this.registerRequestMacro();
+    this.bindNewRules();
   }
 
   /**
@@ -83,6 +85,43 @@ export default class ClassValidatorProvider {
           });
           return res;
         });
+      }
+    );
+  }
+
+  private async bindNewRules() {
+    this.app.container.withBindings(
+      ["Adonis/Core/Validator"],
+      ({ validator }) => {
+        validator.rule(
+          "withinField",
+          (
+            value: DateTime,
+            [{ fieldName, unit, duration }]: {
+              fieldName: string;
+              unit: DurationUnit;
+              duration: number;
+            }[],
+            options
+          ) => {
+            if (
+              !DateTime.isDateTime(value) ||
+              Math.abs(
+                value.diff(
+                  DateTime.fromJSDate(new Date(options.root[fieldName])),
+                  unit
+                )[unit]
+              ) > duration
+            ) {
+              options.errorReporter.report(
+                options.pointer,
+                "withinField",
+                "withinField validation failed",
+                options.arrayExpressionPointer
+              );
+            }
+          }
+        );
       }
     );
   }
