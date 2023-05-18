@@ -1,6 +1,6 @@
 {
   "name": "@lu7766lu7766/adonis-class-validator",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": "Jac",
   "license": "MIT",
   "description": "Class validator for adonis framework",
@@ -33,7 +33,8 @@
     "clean": "rm -rf build",
     "compile": "npm run lint && npm run clean && tsc",
     "build": "npm run compile",
-    "prepublishOnly": "npm run test && npm run build"
+    "prepublishOnly": "npm run test && npm run build",
+    "deploy": "yarn clean && yarn build && yarn publish --access public"
   },
   "adonisjs": {
     "types": "@lu7766lu7766/adonis-class-validator",
