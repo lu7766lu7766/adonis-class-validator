@@ -1,6 +1,6 @@
 {
   "name": "@lu7766lu7766/adonis-class-validator",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "author": "Jac",
   "license": "MIT",
   "description": "Class validator for adonis framework",
@@ -41,6 +41,9 @@
     "providers": [
       "@adonisjs/validator",
       "@lu7766lu7766/adonis-class-validator"
+    ],
+    "preloads": [
+      "@lu7766lu7766/adonis-class-validator/start/validator"
     ]
   },
   "publishConfig": {
